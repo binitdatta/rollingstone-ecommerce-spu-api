@@ -1,156 +1,319 @@
-How to test the User REST API
+Build by grade clean build
 
-1. Get All User With
+Check the jar file by ls -lt build/libs
 
-METHOD:  GET
-URL: http://localhost:9090/rscommerce/pdp-service/account/user
+Run by 
 
-Results
+java -jar -Dspring.profiles.active=mysql build/libs/rollingstone-ecommerce-spu-api-1.0.jar 
 
-{  
-   "content":[  
-      {  
-         "id":1,
-         "userName":"bdatta",
-         "firstName":"Binit",
-         "lastName":"Datta",
-         "sex":"M",
-         "memberType":"G",
-         "accountNumber":"10001",
-         "registrationDate":"2015-01-01"
-      }
-   ],
-   "pageable":{  
-      "sort":{  
-         "sorted":true,
-         "unsorted":false
-      },
-      "offset":0,
-      "pageSize":20,
-      "pageNumber":0,
-      "unpaged":false,
-      "paged":true
-   },
-   "last":true,
-   "totalPages":1,
-   "totalElements":1,
-   "size":20,
-   "number":0,
-   "first":true,
-   "numberOfElements":1,
-   "sort":{  
-      "sorted":true,
-      "unsorted":false
-   }
+Get All SPU  With
+
+1. GET http://localhost:4098//rscommerce/pdp-service/spu
+
+{  
+   "content":[  
+      {  
+         "id":2,
+         "offerId":1002,
+         "productId":2,
+         "highestStoreIndex":34,
+         "radius":50,
+         "storeName":"SRT_0004",
+         "days":5,
+         "promiseDate":"2018-10-24",
+         "instockStatus":true,
+         "quantity":1,
+         "availableQuantity":110,
+         "storeNumber":"245 Main Street",
+         "streetAddress":"9AM-9PM",
+         "city":"Schaumburg",
+         "state":"IL",
+         "zipCode":"60173",
+         "phone":"987-345-9857",
+         "sundayWorkingHours":"9AM-9PM",
+         "mondayWorkingHours":"9AM-9PM",
+         "tuesdayWorkingHours":"9AM-9PM",
+         "wednesdayWorkingHours":"9AM-9PM",
+         "thursdayWorkingHours":"9AM-9PM",
+         "fridayWorkingHours":"9AM-9PM",
+         "saturdayWorkingHours":"9AM-9PM",
+         "autoStore":false,
+         "nearest":false
+      },
+      {  
+         "id":1,
+         "offerId":1001,
+         "productId":2,
+         "highestStoreIndex":32,
+         "radius":50,
+         "storeName":"SRT_0003",
+         "days":5,
+         "promiseDate":"2018-10-25",
+         "instockStatus":true,
+         "quantity":1,
+         "availableQuantity":100,
+         "storeNumber":"245 Main Street",
+         "streetAddress":"9AM-9PM",
+         "city":"Bollingbrook",
+         "state":"ILBollingbrook Store",
+         "zipCode":"60540",
+         "phone":"987-345-9857",
+         "sundayWorkingHours":"9AM-9PM",
+         "mondayWorkingHours":"9AM-9PM",
+         "tuesdayWorkingHours":"9AM-9PM",
+         "wednesdayWorkingHours":"9AM-9PM",
+         "thursdayWorkingHours":"9AM-9PM",
+         "fridayWorkingHours":"9AM-9PM",
+         "saturdayWorkingHours":"9AM-9PM",
+         "autoStore":false,
+         "nearest":true
+      }
+   ],
+   "pageable":{  
+      "sort":{  
+         "sorted":true,
+         "unsorted":false
+      },
+      "offset":0,
+      "pageSize":20,
+      "pageNumber":0,
+      "paged":true,
+      "unpaged":false
+   },
+   "last":true,
+   "totalPages":1,
+   "totalElements":2,
+   "size":20,
+   "number":0,
+   "numberOfElements":2,
+   "sort":{  
+      "sorted":true,
+      "unsorted":false
+   },
+   "first":true
 }
 
-2. Create a New User With
 
-METHOD: POST
-URL: http://localhost:9090/rscommerce/pdp-service/account/user
-BODY:
+2. Create a new SPU 
+
+POST http://localhost:4098//rscommerce/pdp-service/spu
+
+
+Body :
 
 {
-  "userName": "jblackburn",
-  "firstName": "Jessica",
-  "lastName": "Blackburn",
-  "sex": "F",
-  "memberType": "G",
-  "accountNumber": "10004",
-  "registrationDate": "2015-01-02"
+  "offerId": 1002,
+  "productId": 2,
+  "highestStoreIndex": 34,
+  "radius": 50,
+  "storeName": "SRT_0004",
+  "days": 5,
+  "promiseDate": "2018-10-25",
+  "instockStatus": true,
+  "quantity": 1,
+  "availableQuantity": 120,
+  "storeNumber": "245 Main Street",
+  "streetAddress": "9AM-9PM",
+  "city": "Schaumburg",
+  "state": "IL",
+  "zipCode": "60173",
+  "phone": "987-345-9857",
+  "sundayWorkingHours": "9AM-9PM",
+  "mondayWorkingHours": "9AM-9PM",
+  "tuesdayWorkingHours": "9AM-9PM",
+  "wednesdayWorkingHours": "9AM-9PM",
+  "thursdayWorkingHours": "9AM-9PM",
+  "fridayWorkingHours": "9AM-9PM",
+  "saturdayWorkingHours": "9AM-9PM"
 }
 
-3. Verify New User Creation with
+3. Verify the New SPU Creation
 
-METHOD:  GET
-URL: http://localhost:9090/rscommerce/pdp-service/account/user
+GET http://localhost:4098//rscommerce/pdp-service/spu
 
-Results
-
-{  
-   "content":[  
-      {  
-         "id":3,
-         "userName":"jblackburn",
-         "firstName":"Jessica",
-         "lastName":"Blackburn",
-         "sex":"M",
-         "memberType":"G",
-         "accountNumber":"10004",
-         "registrationDate":"2015-01-01"
-      },
-      {  
-         "id":1,
-         "userName":"bdatta",
-         "firstName":"Binit",
-         "lastName":"Datta",
-         "sex":"M",
-         "memberType":"G",
-         "accountNumber":"10001",
-         "registrationDate":"2015-01-01"
-      }
-   ],
-   "pageable":{  
-      "sort":{  
-         "sorted":true,
-         "unsorted":false
-      },
-      "offset":0,
-      "pageSize":20,
-      "pageNumber":0,
-      "unpaged":false,
-      "paged":true
-   },
-   "last":true,
-   "totalPages":1,
-   "totalElements":2,
-   "size":20,
-   "number":0,
-   "first":true,
-   "numberOfElements":2,
-   "sort":{  
-      "sorted":true,
-      "unsorted":false
-   }
+{  
+   "content":[  
+      {  
+         "id":2,
+         "offerId":1002,
+         "productId":2,
+         "highestStoreIndex":34,
+         "radius":50,
+         "storeName":"SRT_0004",
+         "days":5,
+         "promiseDate":"2018-10-24",
+         "instockStatus":true,
+         "quantity":1,
+         "availableQuantity":110,
+         "storeNumber":"245 Main Street",
+         "streetAddress":"9AM-9PM",
+         "city":"Schaumburg",
+         "state":"IL",
+         "zipCode":"60173",
+         "phone":"987-345-9857",
+         "sundayWorkingHours":"9AM-9PM",
+         "mondayWorkingHours":"9AM-9PM",
+         "tuesdayWorkingHours":"9AM-9PM",
+         "wednesdayWorkingHours":"9AM-9PM",
+         "thursdayWorkingHours":"9AM-9PM",
+         "fridayWorkingHours":"9AM-9PM",
+         "saturdayWorkingHours":"9AM-9PM",
+         "autoStore":false,
+         "nearest":false
+      },
+      {  
+         "id":3,
+         "offerId":1002,
+         "productId":2,
+         "highestStoreIndex":34,
+         "radius":50,
+         "storeName":"SRT_0004",
+         "days":5,
+         "promiseDate":"2018-10-24",
+         "instockStatus":true,
+         "quantity":1,
+         "availableQuantity":120,
+         "storeNumber":"245 Main Street",
+         "streetAddress":"9AM-9PM",
+         "city":"Schaumburg",
+         "state":"IL",
+         "zipCode":"60173",
+         "phone":"987-345-9857",
+         "sundayWorkingHours":"9AM-9PM",
+         "mondayWorkingHours":"9AM-9PM",
+         "tuesdayWorkingHours":"9AM-9PM",
+         "wednesdayWorkingHours":"9AM-9PM",
+         "thursdayWorkingHours":"9AM-9PM",
+         "fridayWorkingHours":"9AM-9PM",
+         "saturdayWorkingHours":"9AM-9PM",
+         "autoStore":false,
+         "nearest":false
+      },
+      {  
+         "id":1,
+         "offerId":1001,
+         "productId":2,
+         "highestStoreIndex":32,
+         "radius":50,
+         "storeName":"SRT_0003",
+         "days":5,
+         "promiseDate":"2018-10-25",
+         "instockStatus":true,
+         "quantity":1,
+         "availableQuantity":100,
+         "storeNumber":"245 Main Street",
+         "streetAddress":"9AM-9PM",
+         "city":"Bollingbrook",
+         "state":"ILBollingbrook Store",
+         "zipCode":"60540",
+         "phone":"987-345-9857",
+         "sundayWorkingHours":"9AM-9PM",
+         "mondayWorkingHours":"9AM-9PM",
+         "tuesdayWorkingHours":"9AM-9PM",
+         "wednesdayWorkingHours":"9AM-9PM",
+         "thursdayWorkingHours":"9AM-9PM",
+         "fridayWorkingHours":"9AM-9PM",
+         "saturdayWorkingHours":"9AM-9PM",
+         "autoStore":false,
+         "nearest":true
+      }
+   ],
+   "pageable":{  
+      "sort":{  
+         "sorted":true,
+         "unsorted":false
+      },
+      "offset":0,
+      "pageSize":20,
+      "pageNumber":0,
+      "paged":true,
+      "unpaged":false
+   },
+   "last":true,
+   "totalPages":1,
+   "totalElements":3,
+   "size":20,
+   "number":0,
+   "numberOfElements":3,
+   "sort":{  
+      "sorted":true,
+      "unsorted":false
+   },
+   "first":true
 }
 
-4. Update an existing user with
+3. Get a single SPU
 
-METHOD: PUT
-URL: http://localhost:9090/rscommerce/pdp-service/account/user/3
+GET http://localhost:4098//rscommerce/pdp-service/spu
+/2
+{  
+   "id":2,
+   "offerId":1002,
+   "productId":2,
+   "highestStoreIndex":34,
+   "radius":50,
+   "storeName":"SRT_0004",
+   "days":5,
+   "promiseDate":"2018-10-24",
+   "instockStatus":true,
+   "quantity":1,
+   "availableQuantity":110,
+   "storeNumber":"245 Main Street",
+   "streetAddress":"9AM-9PM",
+   "city":"Schaumburg",
+   "state":"IL",
+   "zipCode":"60173",
+   "phone":"987-345-9857",
+   "sundayWorkingHours":"9AM-9PM",
+   "mondayWorkingHours":"9AM-9PM",
+   "tuesdayWorkingHours":"9AM-9PM",
+   "wednesdayWorkingHours":"9AM-9PM",
+   "thursdayWorkingHours":"9AM-9PM",
+   "fridayWorkingHours":"9AM-9PM",
+   "saturdayWorkingHours":"9AM-9PM",
+   "autoStore":false,
+   "nearest":false
+}
 
-BODY:
+4. Update an existing SPU
+
+PUT http://localhost:4098/rscommerce/pdp-service/spu/3
+
+Body
+
 
 {
   "id":3,
-  "userName": "jblackburn",
-  "firstName": "Jessica",
-  "lastName": "Blackburn",
-  "sex": "M",
-  "memberType": "G",
-  "accountNumber": "10005",
-  "registrationDate": "2015-01-02"
+  "offerId": 1003,
+  "productId": 2,
+  "highestStoreIndex": 34,
+  "radius": 50,
+  "storeName": "SRT_0003",
+  "days": 5,
+  "promiseDate": "2018-10-25",
+  "instockStatus": true,
+  "quantity": 1,
+  "availableQuantity": 50,
+  "storeNumber": "245 Main Street",
+  "streetAddress": "9AM-9PM",
+  "city": "Schaumburg",
+  "state": "IL",
+  "zipCode": "60173",
+  "phone": "987-345-9857",
+  "sundayWorkingHours": "9AM-9PM",
+  "mondayWorkingHours": "9AM-9PM",
+  "tuesdayWorkingHours": "9AM-9PM",
+  "wednesdayWorkingHours": "9AM-9PM",
+  "thursdayWorkingHours": "9AM-9PM",
+  "fridayWorkingHours": "9AM-9PM",
+  "saturdayWorkingHours": "9AM-9PM"
 }
 
-5. Verify New User Creation with
+5. Delete an SPU
 
-METHOD:  GET
-URL: http://localhost:9090/rscommerce/pdp-service/account/user/3
+DELETE http://localhost:4098/rscommerce/pdp-service/spu/3
 
-{  
-   "id":3,
-   "userName":"jblackburn",
-   "firstName":"Jessica",
-   "lastName":"Blackburn",
-   "sex":"M",
-   "memberType":"G",
-   "accountNumber":"10005",
-   "registrationDate":"2015-01-01"
-}
 
-6. Delete the user with id 3 
 
-METHOD: DELETE
-URL: http://localhost:9090/rscommerce/pdp-service/account/user/3
 
 
